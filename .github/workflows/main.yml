@@ -18,9 +18,12 @@ jobs:
     name: SonarCloud Trigger
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v1
       - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@master
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: ./gradlew build sonarqube
