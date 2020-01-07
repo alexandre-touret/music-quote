@@ -13,9 +13,11 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Build with Gradle without testing
+      - name: Build in JVM Mode with Gradle without testing
         run: ./gradlew build -x test
       - name: Build the Docker image Quarkus JVM
         run: docker build -f src/main/docker/Dockerfile.jvm -t littlewing/music-quote-jvm:$(date +%s) .
-      - name: Build the Docker image Quarkus native
-        run: docker build -f src/main/docker/Dockerfile.native -t littlewing/music-quote-native:$(date +%s) .
+#      - name: Build in JVM Mode with Gradle without testing
+#        run: ./gradlew buildNative -x testNative
+#      - name: Build the Docker image Quarkus native
+#        run: docker build -f src/main/docker/Dockerfile.native -t littlewing/music-quote-native:$(date +%s) .
