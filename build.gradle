@@ -6,6 +6,7 @@ plugins {
     id "org.jetbrains.kotlin.kapt" version "${kotlinVersion}"
     id "org.jetbrains.kotlin.plugin.noarg" version "${kotlinVersion}"
     id "org.sonarqube" version "${sonarqubeVersion}"
+    id "jacoco"
 
 }
 
