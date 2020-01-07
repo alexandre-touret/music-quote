@@ -13,6 +13,6 @@ class MusicQuoteService() {
     lateinit var musicQuoteRepository: MusicQuoteRepository
 
     fun findMusicQuote(): MusicQuote {
-        return musicQuoteRepository!!.findARandomMusicQuote() ?: MusicQuote()
+        return musicQuoteRepository.findARandomMusicQuote() ?: MusicQuote()
     }
 }
