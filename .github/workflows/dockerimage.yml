@@ -1,0 +1,16 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the Docker image Quarkus JVM
+      run: docker build -f src/main/docker/Dockerfile.jvm -t quarkus/my-artifactId-jvm:$(date +%s) .
+    - name: Build the Docker image Quarkus native
+      run: docker build -f src/main/docker/Dockerfile.native -t quarkus/my-artifactId-native:$(date +%s) .
