@@ -2,7 +2,6 @@ package info.touret.musicquote.repository
 
 import info.touret.musicquote.model.MusicQuote
 import javax.enterprise.context.ApplicationScoped
-import javax.enterprise.inject.Default
 import javax.inject.Inject
 import javax.persistence.EntityManager
 import kotlin.random.Random
@@ -10,9 +9,8 @@ import kotlin.random.Random
 @ApplicationScoped
 class MusicQuoteRepository {
     @Inject
-    @field: Default
+    @field: ApplicationScoped
     lateinit var entityManager: EntityManager
-
 
     fun findARandomMusicQuote(): MusicQuote? {
         val query = entityManager.criteriaBuilder.createQuery(MusicQuote::class.java)

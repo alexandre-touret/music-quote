@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 @QuarkusTest
 open class MusicQuoteResourceTest {
     @Test
-    fun testHelloEndpoint() {
+    fun should_get_200() {
         RestAssured.given()
                 .`when`()["/music-quote/random"]
                 .then()

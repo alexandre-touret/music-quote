@@ -4,6 +4,8 @@ plugins {
     id "org.jetbrains.kotlin.jvm" version "${kotlinVersion}"
     id "org.jetbrains.kotlin.plugin.allopen" version "${kotlinVersion}"
     id "org.jetbrains.kotlin.kapt" version "${kotlinVersion}"
+    id "org.jetbrains.kotlin.plugin.noarg" version "${kotlinVersion}"
+
 }
 
 repositories {
@@ -12,19 +14,19 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-resteasy'
     implementation 'io.quarkus:quarkus-resteasy-jsonb'
     implementation 'io.quarkus:quarkus-hibernate-orm'
     implementation 'io.quarkus:quarkus-jdbc-postgresql'
     implementation 'io.quarkus:quarkus-kotlin'
-    implementation 'org.mapstruct:mapstruct:1.3.1.Final'
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
     testImplementation 'io.quarkus:quarkus-test-h2'
-    testImplementation 'org.mockito:mockito-core:1.10.19'
-    kapt 'org.mapstruct:mapstruct-processor:1.3.1.Final'
+    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+    kapt "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 }
 
 group = 'info.touret.musicquote'
@@ -41,7 +43,7 @@ compileJava {
 }
 sourceSets {
     generated {
-         kotlin.srcDirs += '${buildDir}/generated/source/kapt'
+         kotlin.srcDirs += "${buildDir}/generated/source/kapt"
     }
 }
 
@@ -49,6 +51,7 @@ sourceSets {
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
+
 }
 test {
     useJUnitPlatform()
@@ -63,4 +66,10 @@ allOpen {
     annotation("javax.ws.rs.Path")
     annotation("javax.enterprise.context.ApplicationScoped")
     annotation("io.quarkus.test.junit.QuarkusTest")
+}
+
+
+noArg {
+    annotation("javax.ws.rs.Path")
+    annotation("javax.enterprise.context.ApplicationScoped")
 }
