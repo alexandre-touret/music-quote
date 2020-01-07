@@ -20,5 +20,5 @@ jobs:
         run: ./gradlew build -x test
       - name: Build the Docker image Quarkus JVM
         run: docker build -f src/main/docker/Dockerfile.jvm -t littlewing/music-quote-jvm:$(date +%s) .
-#    - name: Build the Docker image Quarkus native
-#      run: docker build -f src/main/docker/Dockerfile.native -t littlewing/music-quote-native:$(date +%s) .
+      - name: Build the Docker image Quarkus native
+        run: docker build -f src/main/docker/Dockerfile.native -t littlewing/music-quote-native:$(date +%s) .
