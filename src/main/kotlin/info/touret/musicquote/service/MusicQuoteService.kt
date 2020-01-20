@@ -6,11 +6,7 @@ import javax.enterprise.context.ApplicationScoped
 import javax.inject.Inject
 
 @ApplicationScoped
-class MusicQuoteService() {
-
-    @Inject
-    @field: ApplicationScoped
-    lateinit var musicQuoteRepository: MusicQuoteRepository
+class MusicQuoteService(@Inject var musicQuoteRepository: MusicQuoteRepository) {
 
     fun findMusicQuote(): MusicQuote {
         return musicQuoteRepository.findARandomMusicQuote() ?: MusicQuote()

@@ -29,23 +29,22 @@ dependencies {
     testImplementation 'io.quarkus:quarkus-test-h2'
     testImplementation "org.mockito:mockito-core:${mockitoVersion}"
     kapt "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    kapt "org.mapstruct:mapstruct-jdk8:${mapstructVersion}"
+
 }
 
 group = 'info.touret.musicquote'
 version = '1.0'
 
-compileJava {
-    //source += sourceSets.generated.java
-    options.compilerArgs =[
-            '-parameters',
-            '-Amapstruct.suppressGeneratorTimestamp=true',
-            '-Amapstruct.suppressGeneratorVersionInfoComment=true',
-            '-Amapstruct.defaultComponentModel=cdi'
-    ]
-}
 sourceSets {
     generated {
          kotlin.srcDirs += "${buildDir}/generated/source/kapt"
+    }
+    main {
+        output.resourcesDir = "build/classes/kotlin/main"
+    }
+    test {
+        output.resourcesDir = "build/classes/kotlin/test"
     }
 }
 
@@ -55,9 +54,18 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 
 }
+
 test {
     useJUnitPlatform()
     exclude '**/Native*'
+}
+
+sourceSets{
+    test{
+        resources{
+            include '**/*.*'
+        }
+    }
 }
 
 jacocoTestReport {
@@ -87,4 +95,29 @@ allOpen {
 noArg {
     annotation("javax.ws.rs.Path")
     annotation("javax.enterprise.context.ApplicationScoped")
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+    kotlinOptions.javaParameters = true
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+}
+
+quarkus {
+    setOutputDirectory("$projectDir/build/classes/kotlin/main")
+}
+
+quarkusDev {
+    setSourceDir("$projectDir/src/main/kotlin")
+}
+
+kapt {
+    correctErrorTypes = true
+    arguments {
+        arg("mapstruct.defaultComponentModel", "cdi")
+        arg("mapstruct.unmappedTargetPolicy", "ERROR")
+    }
 }

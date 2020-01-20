@@ -14,12 +14,9 @@ class MusicQuoteRepository {
 
     fun findARandomMusicQuote(): MusicQuote? {
         val query = entityManager.criteriaBuilder.createQuery(MusicQuote::class.java)
-        val quotes = entityManager.createQuery(query)?.resultList
-        val quotesSize = quotes?.size ?: 0
-        if (quotesSize > 0) {
-            return quotes?.get(Random(quotesSize).nextInt())
-        } else {
-            return null
-        }
+        val root = query?.from(MusicQuote::class.java)
+        val quotes = entityManager.createQuery(query).resultList
+        val size = quotes?.size ?: 0
+        return if (size > 0) quotes?.get(Random.nextInt(size - 1)) else null
     }
 }
