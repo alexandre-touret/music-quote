@@ -4,6 +4,7 @@ import io.quarkus.test.common.QuarkusTestResource
 import io.quarkus.test.h2.H2DatabaseTestResource
 import io.quarkus.test.junit.QuarkusTest
 import io.restassured.RestAssured
+import org.hamcrest.CoreMatchers
 import org.junit.jupiter.api.Test
 
 @QuarkusTestResource(H2DatabaseTestResource::class)
@@ -15,5 +16,15 @@ open class MusicQuoteResourceTest {
                 .`when`()["/music-quote/random"]
                 .then()
                 .statusCode(200)
+    }
+
+    @Test
+    fun should_get_a_quote() {
+        RestAssured.given()
+                .`when`()["/music-quote/random"]
+                .then()
+                .statusCode(200)
+                .body("author", CoreMatchers.notNullValue())
+
     }
 }

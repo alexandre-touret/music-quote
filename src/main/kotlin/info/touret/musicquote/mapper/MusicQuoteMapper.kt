@@ -4,7 +4,8 @@ import info.touret.musicquote.dto.MusicQuoteDTO
 import info.touret.musicquote.model.MusicQuote
 import org.mapstruct.Mapper
 
-@Mapper(componentModel = "cdi")
+
+@Mapper
 interface MusicQuoteMapper {
     fun toMusicQuoteDTO(musicQuote: MusicQuote): MusicQuoteDTO
 }
