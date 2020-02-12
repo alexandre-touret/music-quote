@@ -43,3 +43,5 @@ jobs:
         run: echo running on branch ${GITHUB_REF##*/}
       - name: Build the Docker image Quarkus JVM
         run: docker build -f src/main/docker/Dockerfile.jvm -t littlewing/music-quote-jvm:${GITHUB_REF##*/} .
+      - name: Publish the Docker image Quarkus JVM
+        run: docker push littlewing/music-quote-jvm:${GITHUB_REF##*/}
