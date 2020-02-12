@@ -17,7 +17,5 @@ class MusicQuoteResource(@Inject var musicQuoteService: MusicQuoteService) {
     fun showRandomQuote(): MusicQuoteDTO {
         val quote = musicQuoteService.findMusicQuote();
         return MusicQuoteDTO(quote.author ?: "", quote.quote ?: "")
-//        val musicQuoteMapper = Mappers.getMapper(MusicQuoteMapper::class.java)
-//        return musicQuoteMapper.toMusicQuoteDTO(musicQuoteService.findMusicQuote());
     }
 }

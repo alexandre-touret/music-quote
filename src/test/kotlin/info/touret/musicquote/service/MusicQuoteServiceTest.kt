@@ -2,13 +2,11 @@ package info.touret.musicquote.service
 
 import info.touret.musicquote.model.MusicQuote
 import info.touret.musicquote.repository.MusicQuoteRepository
-import io.quarkus.test.junit.QuarkusTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 
-@QuarkusTest
 open class MusicQuoteServiceTest {
 
     @Test
