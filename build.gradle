@@ -16,6 +16,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'io.quarkus:quarkus-container-image-docker'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-resteasy'
