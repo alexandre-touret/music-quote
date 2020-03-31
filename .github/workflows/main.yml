@@ -52,7 +52,7 @@ jobs:
       - name: Login to Heroku Container registry
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:login
+        run: docker login --username=_ --password=${HEROKU_API_KEY} registry.heroku.com
       - name: Tag for Heroku
         run: docker tag docker.pkg.github.com/littlewing/music-quote/music-quote-jvm:${GITHUB_REF##*/} registry.heroku.com/music-quote/music-quote-jvm/web
       - name: Push to Heroku
