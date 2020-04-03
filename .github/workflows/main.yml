@@ -49,15 +49,21 @@ jobs:
         run: docker login -u littlewing -p ${GITHUB_TOKEN} docker.pkg.github.com
       - name: Publish the Docker image Quarkus JVM
         run: docker push docker.pkg.github.com/littlewing/music-quote/music-quote-jvm:${GITHUB_REF##*/}
-      - name: Login to Heroku Container registry
+      #      - name: Login to Heroku Container registry
+      #        env:
+      #          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      #        run: heroku login
+      - name: Login to Heroku login
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku login
-      - name: Login to Heroku login
         run: heroku container:login
       - name: Push to Heroku
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: heroku container:push web
       - name: Push release to Heroku
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: heroku container:release web
 
 
