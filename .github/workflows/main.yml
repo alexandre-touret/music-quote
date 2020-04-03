@@ -56,15 +56,15 @@ jobs:
       - name: Login to Heroku login
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:login
+        run: heroku container:login -a ${{ secrets.KEROKU_APP }}
       - name: Push to Heroku
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:push web
+        run: heroku container:push ${{ secrets.KEROKU_APP }} web
       - name: Push release to Heroku
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:release web
+        run: heroku container:release ${{ secrets.KEROKU_APP }} web
 
 
 
