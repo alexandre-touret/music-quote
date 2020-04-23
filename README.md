@@ -7,6 +7,7 @@
 ### Pre requisites
 
 Heroku
+Add Postgresql dyno
 gradle
 JDK8
 
