@@ -37,12 +37,7 @@ apply this documentation : https://codelabs.developers.google.com/codelabs/cloud
 through github actions
 
 ## Locally
-docker login docker.pkg.github.com
-gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://gcr.io 
-docker pull docker.pkg.github.com/littlewing/music-quote/music-quote-jvm:upgrade_quarkus
 
-docker tag docker.pkg.github.com/littlewing/music-quote/music-quote-jvm:upgrade_quarkus gcr.io/music-quote/music-quote-jvm:v0
+create secret 
 
-gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://gcr.io 
-docker push gcr.io/music-quote/music-quote-jvm:v0
-kubectl create deployment music-quote --image=gcr.io/music-quote/music-quote-jvm:v0
+kubectl create secret docker-registry github-registry --docker-server=docker.pkg.github.com --docker-username=USER--docker-password=PASSWORD --docker-email=EMAIL
