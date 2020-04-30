@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: music-quote-db
+spec:
+  serviceName: "music-quote-db"
+  replicas: 2
+  selector:
+    matchLabels:
+      app: music-quote-db
+  template:
+    metadata:
+      labels:
+        app: music-quote-db
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:latest
+        envFrom:
+          - configMapRef:
+              name: postgres-config
+        ports:
+        - containerPort: 5432
+          name: postgredb
+#         volumeMounts:
+#         - name: postgredb
+#           mountPath: /var/lib/postgresql/data
+#           subPath: postgres
+#   volumeClaimTemplates:
+#   - metadata:
+#       name: postgredb
+#     spec:
+#       accessModes: [ "ReadWriteOnce" ]
+#       storageClassName: gp2
+#       resources:
+#         requests:
+#           storage: 512Mi
