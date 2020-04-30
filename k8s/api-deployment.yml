@@ -19,5 +19,9 @@ spec:
         image: docker.pkg.github.com/littlewing/music-quote/music-quote-jvm:upgrade_quarkus
         ports:
         - containerPort: 8080
+        env:
+            - name: JDBC_DATABASE_URL
+              value: jdbc:postgresql://music-quote-db:5432/demopostgresdb?user=demopostgresadmin&password=demopostgrespwd
       imagePullSecrets:
         - name: github-registry
+    

@@ -41,3 +41,9 @@ through github actions
 create secret 
 
 kubectl create secret docker-registry github-registry --docker-server=docker.pkg.github.com --docker-username=USER--docker-password=PASSWORD --docker-email=EMAIL
+
+
+kubectl apply -f ./k8s/db-configmap.yml
+kubectl apply -f ./k8s/db-statefulset.yml
+kubectl apply -f ./k8s/db-service.yml
+kubectl apply -f ./k8s/api-deployment.yml
