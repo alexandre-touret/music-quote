@@ -29,26 +29,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew build sonarqube
 
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: Set up JDK 1.8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-      - name: Build in JVM Mode with Gradle without testing
-        run: ./gradlew build -x test
-      - name: Branch name
-        run: echo running on branch ${GITHUB_REF##*/}
-      - name: Build the Docker image Quarkus JVM
-        run: docker build -f src/main/docker/Dockerfile.jvm -t docker.pkg.github.com/littlewing/music-quote/music-quote-jvm:${GITHUB_REF##*/} .
-      - name: Login against github docker repository
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: docker login -u littlewing -p ${GITHUB_TOKEN} docker.pkg.github.com
-      - name: Publish the Docker image Quarkus JVM
-        run: docker push docker.pkg.github.com/littlewing/music-quote/music-quote-jvm:${GITHUB_REF##*/}     
 
 
 
