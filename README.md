@@ -1,6 +1,6 @@
 # music-quote
 
-![](https://github.com/littlewing/music-quote/workflows/CI/badge.svg)
+![](https://github.com/littlewing/music-quote/workflows/CI/badge.svg)![](https://github.com/littlewing/music-quote/workflows/CD/badge.svg)
 
 ## Setup 
 
