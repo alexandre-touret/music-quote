@@ -1,7 +1,7 @@
 # music-quote
 
 ![](https://github.com/littlewing/music-quote/workflows/CI/badge.svg)![](https://github.com/littlewing/music-quote/workflows/CD/badge.svg)
-
+[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=touretinfo:littlewing_music-quote&metric=alert_status)](https://sonarcloud.io/dashboard?id=littlewing_music-quote)
 ## Setup 
 
 ### Pre requisites
