@@ -4,13 +4,6 @@ on:
   push:
     branches:
       - master
-  pull_request:
-    branches:
-      - master
-  page_build:
-  release:
-    types:
-      - created
 
 jobs:
   publish:
