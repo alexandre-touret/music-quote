@@ -48,4 +48,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: docker login -u littlewing -p ${GITHUB_TOKEN} docker.pkg.github.com
       - name: Publish the Docker image Quarkus JVM
-        run: docker push docker.pkg.github.com/littlewing/music-quote/music-quote-jvm:${GITHUB_REF##*/}
+        run: docker push docker.pkg.github.com/littlewing/music-quote/music-quote-jvm:${GITHUB_REF##*/}     
+
+
+

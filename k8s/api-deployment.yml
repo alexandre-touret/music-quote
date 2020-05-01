@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: music-quote-api-deployment
+  labels:
+    app: music-quote-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: music-quote-api
+  template:
+    metadata:
+      labels:
+        app: music-quote-api
+    spec:
+      containers:
+      - name: music-quote-api
+        image: docker.pkg.github.com/littlewing/music-quote/music-quote-jvm:master
+        ports:
+        - containerPort: 8080
+        env:
+            - name: JDBC_DATABASE_URL
+              value: jdbc:postgresql://music-quote-db:5432/demopostgresdb?user=demopostgresadmin&password=demopostgrespwd
+      imagePullSecrets:
+        - name: github-registry
+    
