@@ -25,7 +25,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: docker login -u ${GITHUB_ACTOR} -p ${GITHUB_TOKEN} docker.pkg.github.com
       - name: Publish the Docker image Quarkus JVM
-        run: docker push docker.pkg.github.com/${GITHUB_REPOSITORY}/music-quote-jvm:${GITHUB_REF##*/}
+        run: docker push docker.pkg.github.com/${GITHUB_REPOSITORY}/music-quote-jvm:latest
         # Setup gcloud CLI
       - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
