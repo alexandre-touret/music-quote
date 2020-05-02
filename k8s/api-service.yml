@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: music-quote-api-service
+spec:
+  selector:
+    app: music-quote-api
+  ports:
+    - port: 8443
+      targetPort: 8443
+  type: LoadBalancer
