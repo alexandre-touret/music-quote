@@ -21,3 +21,4 @@ services:
       JDBC_DATABASE_URL: jdbc:postgresql://db:5432/demopostgresdb?user=demopostgresadmin&password=demopostgrespwd
     ports:
       - 8080:8080
+      - 8443:8443

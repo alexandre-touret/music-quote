@@ -19,6 +19,7 @@ spec:
         image: docker.pkg.github.com/alexandre-touret/music-quote/music-quote-jvm:master
         ports:
         - containerPort: 8080
+        - containerPort: 8443
         env:
             - name: JDBC_DATABASE_URL
               value: jdbc:postgresql://music-quote-db:5432/demopostgresdb?user=demopostgresadmin&password=demopostgrespwd
