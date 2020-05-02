@@ -23,6 +23,7 @@ spec:
         env:
             - name: JDBC_DATABASE_URL
               value: jdbc:postgresql://music-quote-db:5432/demopostgresdb?user=demopostgresadmin&password=demopostgrespwd
+        imagePullPolicy: Always
       imagePullSecrets:
         - name: github-registry
     
