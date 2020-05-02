@@ -84,7 +84,7 @@ sonarqube{
 }
 
 buildNative {
-    enableHttpUrlHandler = true
+  //  enableHttpUrlHandler = true
 }
 
 allOpen {
