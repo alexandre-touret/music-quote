@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: music-quote-api
-        image: docker.pkg.github.com/alexandre-touret/music-quote/music-quote-jvm:master
+        image: docker.pkg.github.com/alexandre-touret/music-quote/music-quote-jvm:latest
         ports:
         - containerPort: 8080
         - containerPort: 8443
