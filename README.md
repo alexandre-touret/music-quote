@@ -4,43 +4,90 @@
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=littlewing_music-quote&metric=alert_status)](https://sonarcloud.io/dashboard?id=littlewing_music-quote)
 ## Setup 
 
+This project could be deployed using K8S.
+I configured two github actions to build and deploy from the master branch a docker image to Google Cloud Kubenetes engine.
+
 ### Pre requisites
 
-Gradle
-Kotlin
+Use these tools
+* Gradle
+* Kotlin
+* JDK 8 ( 11 soon )
 
 ### Gcloud & K8S setup
-https://github.com/GoogleCloudPlatform/github-actions 
-This project could be deployed into Google Cloud K8S engine
 
-Install google cloud sdk
+#### Gcloud 
+
+I installed Gcloud sdk by running the following commands
+
+```jshelllanguage
+echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+sudo apt-get update && sudo apt-get install google-cloud-sdk
+sudo apt-get update
+sudo apt-get dist-upgrade
+sudo apt-get update && sudo apt-get install google-cloud-sdk
+
+```
+Then you could run this command to login 
+
+```jshelllanguage
+gcloud auth login
+```
+
+To get all the informations to configure gcloud (service account, iam, k8s cluster,...), you can follow the following resources:
+
+* [Google Cloud Github action](https://github.com/GoogleCloudPlatform/github-actions)
+* [Cloud springboot kubenetes codelab](https://codelabs.developers.google.com/codelabs/cloud-springboot-kubernetes/)
 
 
- 4364  2020-04-30 11:31  echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
- 4365  2020-04-30 11:31  curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
- 4366  2020-04-30 11:33  sudo apt-get update && sudo apt-get install google-cloud-sdk
- 4367  2020-04-30 11:33  sudo apt-get update
- 4368  2020-04-30 11:33  sudo apt-get dist-upgrade
- 4369  2020-04-30 11:35  sudo apt-get update && sudo apt-get install google-cloud-sdk
+#### K8S
+You could install Kubectl by running the following commands:
 
+```jshelllanguage
+echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y kubectl
+```
 
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+You could get the kubectl credential in your local configuration by running this command:
 
-sudo apt install kubectl
+```jshelllanguage
+gcloud container clusters get-credentials cluster-name
+```
 
-
-apply this documentation : https://codelabs.developers.google.com/codelabs/cloud-springboot-kubernetes/
 
 
 ## Deployment
 
-through github actions
+### Before deploying
+
+You have to create a K8S secret by running this command
+
+```jshelllanguage
+kubectl create secret docker-registry github-registry --docker-server=docker.pkg.github.com --docker-username=USER--docker-password=PASSWORD --docker-email=EMAIL
+```
+
+### Using Github actions
+By running the [CD Github workflow](./.github/workflows/gke.yml), you can :
+* Build a docker image and deploy it in github docker repository
+* Deploy on Google Cloud Kubernetes Engine
+
+##### Secrets variables needed
+
+In settings/secrets, you have to configure the following secrets:
+
+| Secret key  | How to get it ?          | 
+| :--------------- |:---------------:|
+| ``GKE_CLUSTER`` |   `` gcloud container clusters list``      |
+| ``GKE_PROJECT``  | ``gcloud container clusters list``           | 
+| ``GKE_SA_EMAIL``  | ``gcloud container clusters list``    |
+| ``GKE_ZONE `` | ``gcloud container clusters list``           |
+| ``SONAR_TOKEN``  | Go to sonarcloud          | 
 
 ## Locally
 
 create secret 
-
-kubectl create secret docker-registry github-registry --docker-server=docker.pkg.github.com --docker-username=USER--docker-password=PASSWORD --docker-email=EMAIL
 
 
 kubectl apply -f ./k8s/db-configmap.yml
