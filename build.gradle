@@ -43,31 +43,27 @@ sourceSets {
          kotlin.srcDirs += "${buildDir}/generated/source/kapt"
     }
     main {
-        output.resourcesDir = "build/classes/kotlin/main"
+        //output.resourcesDir = "build/classes/kotlin/main"
     }
     test {
-        output.resourcesDir = "build/classes/kotlin/test"
+        //output.resourcesDir = "build/classes/kotlin/test"
+        resources{
+            include '**/*.*'
+        }
     }
 }
 
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 test {
     useJUnitPlatform()
+    failFast = true
     exclude '**/Native*'
-}
 
-sourceSets{
-    test{
-        resources{
-            include '**/*.*'
-        }
-    }
 }
 
 jacocoTestReport {
@@ -79,6 +75,7 @@ jacocoTestReport {
 sonarqube{
     properties{
         property "sonar.jacoco.reportPath", "$buildDir/jacoco/test.exec"
+        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml"
     }
 
 }
@@ -100,12 +97,12 @@ noArg {
 }
 
 compileKotlin {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_11
     kotlinOptions.javaParameters = true
 }
 
 compileTestKotlin {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_11
 }
 
 quarkus {
@@ -118,6 +115,7 @@ quarkusDev {
 
 kapt {
     correctErrorTypes = true
+    includeCompileClasspath = false
     arguments {
         arg("mapstruct.defaultComponentModel", "cdi")
         arg("mapstruct.unmappedTargetPolicy", "ERROR")
