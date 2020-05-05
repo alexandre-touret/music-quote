@@ -46,7 +46,10 @@ sourceSets {
         output.resourcesDir = "build/classes/kotlin/main"
     }
     test {
-        output.resourcesDir = "build/classes/kotlin/test"
+        //output.resourcesDir = "build/classes/kotlin/test"
+        resources{
+            include '**/*.*'
+        }
     }
 }
 
@@ -58,15 +61,14 @@ java {
 
 test {
     useJUnitPlatform()
+    failFast = true
     exclude '**/Native*'
+
 }
 
 sourceSets{
     test{
-        resources{
-            srcDirs = ["src/test/resources"]
-            includes = ['*.*']
-        }
+
     }
 }
 
@@ -118,6 +120,7 @@ quarkusDev {
 
 kapt {
     correctErrorTypes = true
+    includeCompileClasspath = false
     arguments {
         arg("mapstruct.defaultComponentModel", "cdi")
         arg("mapstruct.unmappedTargetPolicy", "ERROR")

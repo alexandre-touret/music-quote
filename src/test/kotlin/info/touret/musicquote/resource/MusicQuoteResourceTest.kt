@@ -12,8 +12,9 @@ import javax.ws.rs.core.HttpHeaders.CONTENT_TYPE
 import javax.ws.rs.core.MediaType.APPLICATION_JSON
 
 @QuarkusTestResource(H2DatabaseTestResource::class)
-@QuarkusTest
+@QuarkusTest()
 open class MusicQuoteResourceTest {
+
     @Test
     fun should_get_200() {
         RestAssured.given()
