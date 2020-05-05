@@ -46,7 +46,7 @@ sourceSets {
         output.resourcesDir = "build/classes/kotlin/main"
     }
     test {
-        //output.resourcesDir = "build/classes/kotlin/test"
+        output.resourcesDir = "build/classes/kotlin/test"
         resources{
             include '**/*.*'
         }
@@ -64,12 +64,6 @@ test {
     failFast = true
     exclude '**/Native*'
 
-}
-
-sourceSets{
-    test{
-
-    }
 }
 
 jacocoTestReport {
