@@ -11,7 +11,7 @@ updates:
       - "Gradle dependencies"
       - "triage-board"
     commit-message:
-      prefix: "Production Dependencies"
-      prefix-development: "Dev Dependencies"
+      prefix: "Prod Deps"
+      prefix-development: "Dev Deps"
       include: "scope"
 
