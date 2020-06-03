@@ -1,0 +1,17 @@
+version: 2
+updates:
+  # Enable version updates for gradle
+  - package-ecosystem: "gradle"
+    directory: "/"
+    # Check the npm registry for updates every day (weekdays)
+    schedule:
+      interval: "daily"
+    target-branch: "master"
+    labels:
+      - "Gradle dependencies"
+      - "triage-board"
+    commit-message:
+      prefix: "Production Dependencies"
+      prefix-development: "Dev Dependencies"
+      include: "scope"
+
