@@ -11,4 +11,8 @@ class MusicQuoteService(@Inject var musicQuoteRepository: MusicQuoteRepository) 
     fun findMusicQuote(): MusicQuote {
         return musicQuoteRepository.findARandomMusicQuote() ?: MusicQuote()
     }
+
+    fun findMusicQuoteList(): List<MusicQuote> {
+        return musicQuoteRepository.findAllQuotes()
+    }
 }
